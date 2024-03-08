@@ -1,0 +1,27 @@
+//PROTOCOLO DELEGADO
+import Foundation
+
+class firstclass: secondClassProtocol{
+    func callsecond(){
+        let secondClass = secondClass()
+        secondClass.delegate = self
+        secondClass.CallFirst()
+    }
+    func Call(){
+        print("Estoy llamando a secondClassProtocol")
+    }
+}
+
+protocol secondClassProtocol{
+    func Call()
+}
+class secondClass{
+    var delegate: secondClassProtocol?
+    func CallFirst(){
+        sleep(5)
+        delegate?.Call()
+    }
+}
+
+let firstClass = firstclass()
+firstClass.callsecond()
